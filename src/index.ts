@@ -301,7 +301,7 @@ const HTML_UI = `<!DOCTYPE html>
           resultDiv.innerHTML = \`<div class="result success">✅ Successfully deployed worker "\${result.script}"! Redirecting...</div>\`;
           // Redirect to the deployed worker after 2 seconds
           setTimeout(() => {
-            window.location.href = '/\${result.script}';
+            window.location.href = '/' + result.script;
           }, 2000);
         } else {
           resultDiv.innerHTML = \`<div class="result error">❌ Error: \${result.error}</div>\`;
