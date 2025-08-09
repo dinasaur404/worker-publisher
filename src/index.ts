@@ -59,6 +59,7 @@ const HTML_UI = `<!DOCTYPE html>
 <html>
 <head>
   <title>Worker Publisher</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>&#x1F680;</text></svg>">
   <style>
     * {
       margin: 0;
@@ -200,6 +201,7 @@ const HTML_UI = `<!DOCTYPE html>
 <html>
 <head>
   <title>{{WORKER_NAME}} Deployed!</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>&#x1F680;</text></svg>">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
@@ -255,7 +257,7 @@ const HTML_UI = `<!DOCTYPE html>
 </head>
 <body>
   <div class="container">
-    <span class="success-emoji">🎯</span>
+    <span class="success-emoji">&#x1F680;</span>
     <h1>{{WORKER_NAME}}</h1>
     <div class="deployed-badge">IS NOW DEPLOYED!</div>
     <p>Your Cloudflare Worker is live and ready to serve the world!</p>
