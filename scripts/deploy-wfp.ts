@@ -1,6 +1,5 @@
 import Cloudflare from "cloudflare";
 import { toFile } from "cloudflare/index";
-import "dotenv/config";
 
 
 
@@ -25,7 +24,7 @@ export async function deploySnippetToNamespace(opts: {
     // add other binding types as needed
   >;
 }) {
-  const { namespaceName, scriptName, code, bindings = [] } = opts;
+    const { namespaceName, scriptName, code, bindings = [] } = opts;
 
   // 1) Ensure dispatch namespace exists (create if missing)
   let ns = null as null | { namespace_name?: string };
@@ -79,7 +78,7 @@ if (require.main === module) {
   `;
 
   deploySnippetToNamespace({
-    namespaceName: "my-cool-namespace",
+    namespaceName: "my-dispatch-namespace",
     scriptName: "my-hello-world-script",
     code,
     bindings: [
