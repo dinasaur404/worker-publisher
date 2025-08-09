@@ -5,11 +5,21 @@
 {
 	"$schema": "node_modules/wrangler/config-schema.json",
 	"name": "worker-publisher",
-	"main": "src/index.js",
+	"main": "src/index.ts",
 	"compatibility_date": "2025-08-09",
+	"dispatch_namespaces": [
+		{
+		  "binding": "DISPATCH_NAMESPACE",
+		  "namespace": "my-dispatch-namespace",
+		  "experimental_remote": true
+		}
+	],
 	"observability": {
 		"enabled": true
-	}
+	},
+	"vars": {
+		"CLOUDFLARE_ACCOUNT_ID": "your-account-id"
+	},
 	/**
 	 * Smart Placement
 	 * Docs: https://developers.cloudflare.com/workers/configuration/smart-placement/#smart-placement

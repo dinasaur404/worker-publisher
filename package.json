@@ -3,14 +3,21 @@
 	"version": "0.0.0",
 	"private": true,
 	"scripts": {
-		"deploy": "wrangler deploy",
+		"deploy:wfp": "tsx scripts/deploy-wfp.ts",
+		"deploy": "npm run deploy:wfp && wrangler deploy",
 		"dev": "wrangler dev",
 		"start": "wrangler dev",
 		"test": "vitest"
 	},
 	"devDependencies": {
 		"@cloudflare/vitest-pool-workers": "^0.8.19",
+		"dotenv": "^17.2.1",
+		"tsx": "^4.20.3",
+		"typescript": "^5.9.2",
 		"vitest": "~3.2.0",
 		"wrangler": "^4.28.1"
+	},
+	"dependencies": {
+		"cloudflare": "^4.5.0"
 	}
 }
