@@ -255,7 +255,7 @@ const HTML_UI = `<!DOCTYPE html>
 </head>
 <body>
   <div class="container">
-    <span class="success-emoji">🚀</span>
+    <span class="success-emoji">🎯</span>
     <h1>{{WORKER_NAME}}</h1>
     <div class="deployed-badge">IS NOW DEPLOYED!</div>
     <p>Your Cloudflare Worker is live and ready to serve the world!</p>
@@ -286,7 +286,7 @@ const HTML_UI = `<!DOCTYPE html>
       const code = document.getElementById('code').value;
       const resultDiv = document.getElementById('result');
       
-      resultDiv.innerHTML = 'Deploying...';
+      resultDiv.innerHTML = '<div style="font-weight: 900; text-transform: uppercase; letter-spacing: 0.05em;">Deploying...</div>';
       
       try {
         const response = await fetch('/deploy', {
