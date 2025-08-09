@@ -9,7 +9,7 @@
 	"compatibility_date": "2025-08-09",
 	"dispatch_namespaces": [
 		{
-		  "binding": "DISPATCH_NAMESPACE",
+		  "binding": "DISPATCHER",
 		  "namespace": "my-dispatch-namespace",
 		  "experimental_remote": true
 		}

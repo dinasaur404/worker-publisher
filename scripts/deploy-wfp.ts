@@ -1,5 +1,6 @@
 import Cloudflare from "cloudflare";
 import { toFile } from "cloudflare/index";
+import "dotenv/config";
 
 
 
