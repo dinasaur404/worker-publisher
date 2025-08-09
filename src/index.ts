@@ -197,7 +197,7 @@ const HTML_UI = `<!DOCTYPE html>
         <label for="code">Worker Code</label>
         <textarea id="code">export default {
   async fetch(request, env, ctx) {
-    const html = \`<!DOCTYPE html>
+    const html = \\\`<!DOCTYPE html>
 <html>
 <head>
   <meta charset="UTF-8">
@@ -289,7 +289,7 @@ const HTML_UI = `<!DOCTYPE html>
     <a href="/" class="deploy-more-btn">DEPLOY MORE! 🔥</a>
   </div>
 </body>
-</html>\`;
+</html>\\\`;
 
     // Replace placeholder with actual worker name from URL
     const url = new URL(request.url);
