@@ -216,7 +216,6 @@ const HTML_UI = `<!DOCTYPE html>
       '.deploy-more-btn:hover { transform: rotate(1deg) translate(-2px, -2px); box-shadow: 12px 12px 0px #1a1a1a; }' +
       '.deploy-more-btn:active { transform: rotate(1deg) translate(2px, 2px); box-shadow: 4px 4px 0px #1a1a1a; }' +
       '</style></head><body><div class="container">' +
-      '<span class="success-emoji">SUCCESS</span>' +
       '<h1>' + workerName.toUpperCase() + '</h1>' +
       '<div class="deployed-badge">IS NOW DEPLOYED!</div>' +
       '<p>Your Cloudflare Worker is live and ready to serve the world!</p>' +
@@ -253,16 +252,16 @@ const HTML_UI = `<!DOCTYPE html>
         const result = await response.json();
         
         if (response.ok) {
-          resultDiv.innerHTML = \`<div class="result success">✅ Successfully deployed worker "\${result.script}"! Redirecting...</div>\`;
+          resultDiv.innerHTML = \`<div class="result success">Successfully deployed worker "\${result.script}"! Redirecting...</div>\`;
           // Redirect to the deployed worker after 2 seconds
           setTimeout(() => {
             window.location.href = '/' + result.script;
           }, 2000);
         } else {
-          resultDiv.innerHTML = \`<div class="result error">❌ Error: \${result.error}</div>\`;
+          resultDiv.innerHTML = \`<div class="result error">Error: \${result.error}</div>\`;
         }
       } catch (error) {
-        resultDiv.innerHTML = \`<div class="result error">❌ Error: \${error.message}</div>\`;
+        resultDiv.innerHTML = \`<div class="result error">Error: \${error.message}</div>\`;
       }
     });
   </script>
