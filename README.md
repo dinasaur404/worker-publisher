@@ -1,6 +1,6 @@
 # Worker Publisher
 
-A Cloudflare Worker that creates and manages other workers via the Cloudflare SDK.
+A Cloudflare Worker that creates and deploys Workers to a Dispatch Namespace via the Cloudflare SDK.
 
 [![Deploy to Cloudflare Workers](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/dinasaur404/worker-publisher)
 
