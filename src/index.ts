@@ -204,7 +204,7 @@ const HTML_UI = `<!DOCTYPE html>
     const html = '<!DOCTYPE html>' +
       '<html><head><meta charset="UTF-8">' +
       '<title>' + workerName + ' Deployed!</title>' +
-      '<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🚀</text></svg>">' +
+      '<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2240%22 fill=%22%23fb923c%22/></svg>">' +
       '<style>* { margin: 0; padding: 0; box-sizing: border-box; }' +
       'body { font-family: "Space Grotesk", -apple-system, BlinkMacSystemFont, sans-serif; background: #fef7ed; color: #1a1a1a; min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 20px; }' +
       '.container { text-align: center; max-width: 600px; }' +
