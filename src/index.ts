@@ -197,106 +197,33 @@ const HTML_UI = `<!DOCTYPE html>
         <label for="code">Worker Code</label>
         <textarea id="code">export default {
   async fetch(request, env, ctx) {
-    const html = \\\`<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="UTF-8">
-  <title>{{WORKER_NAME}} Deployed!</title>
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🚀</text></svg>">
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      font-family: "Space Grotesk", -apple-system, BlinkMacSystemFont, sans-serif;
-      background: #fef7ed;
-      color: #1a1a1a;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-    }
-    .container {
-      text-align: center;
-      max-width: 600px;
-    }
-    h1 {
-      font-size: 4rem;
-      font-weight: 900;
-      color: #1a1a1a;
-      text-shadow: 6px 6px 0px #fb923c;
-      margin-bottom: 2rem;
-      text-transform: uppercase;
-      letter-spacing: -0.02em;
-      word-break: break-word;
-    }
-    .deployed-badge {
-      background: #fb923c;
-      color: #1a1a1a;
-      border: 4px solid #1a1a1a;
-      padding: 1.5rem 3rem;
-      font-weight: 900;
-      font-size: 1.5rem;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      box-shadow: 12px 12px 0px #1a1a1a;
-      display: inline-block;
-      margin-bottom: 3rem;
-      transform: rotate(-2deg);
-    }
-    p {
-      font-size: 1.3rem;
-      font-weight: 600;
-      margin-bottom: 2rem;
-      color: #374151;
-    }
-    .success-emoji {
-      font-size: 3rem;
-      margin-bottom: 1rem;
-      display: block;
-    }
-    .deploy-more-btn {
-      background: #22c55e;
-      color: #1a1a1a;
-      border: 4px solid #1a1a1a;
-      padding: 1rem 2rem;
-      font-weight: 900;
-      font-size: 1.2rem;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      text-decoration: none;
-      display: inline-block;
-      margin-top: 2rem;
-      box-shadow: 8px 8px 0px #1a1a1a;
-      transition: all 0.1s ease;
-      transform: rotate(1deg);
-    }
-    .deploy-more-btn:hover {
-      transform: rotate(1deg) translate(-2px, -2px);
-      box-shadow: 12px 12px 0px #1a1a1a;
-    }
-    .deploy-more-btn:active {
-      transform: rotate(1deg) translate(2px, 2px);
-      box-shadow: 4px 4px 0px #1a1a1a;
-    }
-  </style>
-</head>
-<body>
-  <div class="container">
-    <span class="success-emoji">🚀</span>
-    <h1>{{WORKER_NAME}}</h1>
-    <div class="deployed-badge">IS NOW DEPLOYED!</div>
-    <p>Your Cloudflare Worker is live and ready to serve the world!</p>
-    <a href="/" class="deploy-more-btn">DEPLOY MORE! 🔥</a>
-  </div>
-</body>
-</html>\\\`;
-
-    // Replace placeholder with actual worker name from URL
+    // Get worker name from URL path
     const url = new URL(request.url);
     const workerName = url.pathname.split('/')[1] || 'Your Worker';
-    const finalHtml = html.replace(/{{WORKER_NAME}}/g, workerName);
     
-    return new Response(finalHtml, {
+    const html = '<!DOCTYPE html>' +
+      '<html><head><meta charset="UTF-8">' +
+      '<title>' + workerName + ' Deployed!</title>' +
+      '<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🚀</text></svg>">' +
+      '<style>* { margin: 0; padding: 0; box-sizing: border-box; }' +
+      'body { font-family: "Space Grotesk", -apple-system, BlinkMacSystemFont, sans-serif; background: #fef7ed; color: #1a1a1a; min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 20px; }' +
+      '.container { text-align: center; max-width: 600px; }' +
+      'h1 { font-size: 4rem; font-weight: 900; color: #1a1a1a; text-shadow: 6px 6px 0px #fb923c; margin-bottom: 2rem; text-transform: uppercase; letter-spacing: -0.02em; word-break: break-word; }' +
+      '.deployed-badge { background: #fb923c; color: #1a1a1a; border: 4px solid #1a1a1a; padding: 1.5rem 3rem; font-weight: 900; font-size: 1.5rem; text-transform: uppercase; letter-spacing: 0.05em; box-shadow: 12px 12px 0px #1a1a1a; display: inline-block; margin-bottom: 3rem; transform: rotate(-2deg); }' +
+      'p { font-size: 1.3rem; font-weight: 600; margin-bottom: 2rem; color: #374151; }' +
+      '.success-emoji { font-size: 3rem; margin-bottom: 1rem; display: block; }' +
+      '.deploy-more-btn { background: #22c55e; color: #1a1a1a; border: 4px solid #1a1a1a; padding: 1rem 2rem; font-weight: 900; font-size: 1.2rem; text-transform: uppercase; letter-spacing: 0.05em; text-decoration: none; display: inline-block; margin-top: 2rem; box-shadow: 8px 8px 0px #1a1a1a; transition: all 0.1s ease; transform: rotate(1deg); }' +
+      '.deploy-more-btn:hover { transform: rotate(1deg) translate(-2px, -2px); box-shadow: 12px 12px 0px #1a1a1a; }' +
+      '.deploy-more-btn:active { transform: rotate(1deg) translate(2px, 2px); box-shadow: 4px 4px 0px #1a1a1a; }' +
+      '</style></head><body><div class="container">' +
+      '<span class="success-emoji">🚀</span>' +
+      '<h1>' + workerName.toUpperCase() + '</h1>' +
+      '<div class="deployed-badge">IS NOW DEPLOYED!</div>' +
+      '<p>Your Cloudflare Worker is live and ready to serve the world!</p>' +
+      '<a href="/" class="deploy-more-btn">DEPLOY MORE! 🔥</a>' +
+      '</div></body></html>';
+    
+    return new Response(html, {
       headers: { 'Content-Type': 'text/html' }
     });
   }
