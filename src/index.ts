@@ -60,31 +60,150 @@ const HTML_UI = `<!DOCTYPE html>
 <head>
   <title>Worker Publisher</title>
   <style>
-    body { font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; }
-    textarea { width: 100%; height: 300px; font-family: monospace; }
-    input, button { padding: 8px; margin: 5px 0; }
-    button { background: #f38020; color: white; border: none; padding: 10px 20px; cursor: pointer; }
-    .result { background: #f0f0f0; padding: 10px; margin: 10px 0; border-radius: 4px; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: "Space Grotesk", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background-color: #fef7ed;
+      color: #1a1a1a;
+      line-height: 1.6;
+      padding: 20px;
+    }
+    
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    h1 {
+      font-size: 3rem;
+      font-weight: 900;
+      color: #1a1a1a;
+      text-shadow: 4px 4px 0px #fb923c;
+      margin-bottom: 2rem;
+      text-transform: uppercase;
+      letter-spacing: -0.02em;
+    }
+    
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+    
+    label {
+      display: block;
+      font-weight: 700;
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+      color: #1a1a1a;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    
+    input, textarea {
+      width: 100%;
+      padding: 1rem;
+      border: 4px solid #1a1a1a;
+      background: white;
+      font-family: "JetBrains Mono", "Fira Code", monospace;
+      font-size: 1rem;
+      box-shadow: 8px 8px 0px #fb923c;
+      transition: all 0.1s ease;
+    }
+    
+    input:focus, textarea:focus {
+      outline: none;
+      transform: translate(-2px, -2px);
+      box-shadow: 12px 12px 0px #fb923c;
+    }
+    
+    textarea {
+      height: 300px;
+      resize: vertical;
+    }
+    
+    button {
+      background: #fb923c;
+      color: #1a1a1a;
+      border: 4px solid #1a1a1a;
+      padding: 1rem 2rem;
+      font-weight: 900;
+      font-size: 1.1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      cursor: pointer;
+      box-shadow: 8px 8px 0px #1a1a1a;
+      transition: all 0.1s ease;
+      font-family: inherit;
+    }
+    
+    button:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: 12px 12px 0px #1a1a1a;
+    }
+    
+    button:active {
+      transform: translate(2px, 2px);
+      box-shadow: 4px 4px 0px #1a1a1a;
+    }
+    
+    .result {
+      margin-top: 2rem;
+      padding: 1.5rem;
+      border: 4px solid #1a1a1a;
+      background: white;
+      box-shadow: 8px 8px 0px #fb923c;
+      font-weight: 600;
+    }
+    
+    .result.success {
+      background: #dcfce7;
+      border-color: #166534;
+      box-shadow: 8px 8px 0px #22c55e;
+    }
+    
+    .result.error {
+      background: #fef2f2;
+      border-color: #dc2626;
+      box-shadow: 8px 8px 0px #ef4444;
+    }
+    
+    .result a {
+      color: #fb923c;
+      font-weight: 900;
+      text-decoration: none;
+      border-bottom: 3px solid #fb923c;
+    }
+    
+    .result a:hover {
+      background: #fb923c;
+      color: #1a1a1a;
+    }
   </style>
 </head>
 <body>
-  <h1>Worker Publisher</h1>
-  <form id="deployForm">
-    <div>
-      <label>Script Name:</label><br>
-      <input type="text" id="scriptName" placeholder="my-worker" required>
-    </div>
-    <div>
-      <label>Worker Code:</label><br>
-      <textarea id="code" placeholder="export default {
+  <div class="container">
+    <h1>Worker Publisher</h1>
+    <form id="deployForm">
+      <div class="form-group">
+        <label for="scriptName">Script Name</label>
+        <input type="text" id="scriptName" placeholder="my-worker" required>
+      </div>
+      <div class="form-group">
+        <label for="code">Worker Code</label>
+        <textarea id="code" placeholder="export default {
   async fetch(request, env) {
     return new Response('Hello World!');
   }
 };" required></textarea>
-    </div>
-    <button type="submit">Deploy Worker</button>
-  </form>
-  <div id="result"></div>
+      </div>
+      <button type="submit">Deploy Worker</button>
+    </form>
+    <div id="result"></div>
+  </div>
 
   <script>
     document.getElementById('deployForm').addEventListener('submit', async (e) => {
@@ -105,12 +224,12 @@ const HTML_UI = `<!DOCTYPE html>
         const result = await response.json();
         
         if (response.ok) {
-          resultDiv.innerHTML = \`<div class="result">✅ Successfully deployed worker "\${result.script}" to namespace "\${result.namespace}"<br>Access it at: <a href="/\${result.script}">/\${result.script}</a></div>\`;
+          resultDiv.innerHTML = \`<div class="result success">✅ Successfully deployed worker "\${result.script}" to namespace "\${result.namespace}"<br>Access it at: <a href="/\${result.script}">/\${result.script}</a></div>\`;
         } else {
-          resultDiv.innerHTML = \`<div class="result">❌ Error: \${result.error}</div>\`;
+          resultDiv.innerHTML = \`<div class="result error">❌ Error: \${result.error}</div>\`;
         }
       } catch (error) {
-        resultDiv.innerHTML = \`<div class="result">❌ Error: \${error.message}</div>\`;
+        resultDiv.innerHTML = \`<div class="result error">❌ Error: \${error.message}</div>\`;
       }
     });
   </script>
