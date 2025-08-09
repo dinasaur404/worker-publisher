@@ -216,11 +216,11 @@ const HTML_UI = `<!DOCTYPE html>
       '.deploy-more-btn:hover { transform: rotate(1deg) translate(-2px, -2px); box-shadow: 12px 12px 0px #1a1a1a; }' +
       '.deploy-more-btn:active { transform: rotate(1deg) translate(2px, 2px); box-shadow: 4px 4px 0px #1a1a1a; }' +
       '</style></head><body><div class="container">' +
-      '<span class="success-emoji">🚀</span>' +
+      '<span class="success-emoji">✓</span>' +
       '<h1>' + workerName.toUpperCase() + '</h1>' +
       '<div class="deployed-badge">IS NOW DEPLOYED!</div>' +
       '<p>Your Cloudflare Worker is live and ready to serve the world!</p>' +
-      '<a href="/" class="deploy-more-btn">DEPLOY MORE! 🔥</a>' +
+      '<a href="/" class="deploy-more-btn">DEPLOY MORE!</a>' +
       '</div></body></html>';
     
     return new Response(html, {
